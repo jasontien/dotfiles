@@ -1,0 +1,92 @@
+" search for actions: :actionlist <patter>
+
+set number relativenumber                " show the line number relative to the line with the cursor
+set scrolloff=3
+set ignorecase                    " ignore case in search patterns
+set smartcase                     " no ignore case when pattern is uppercase
+set incsearch                     " show search results while typing
+set wrapscan                      " searches wrap around the end of the file
+set surround                      " emulate vim-surround plugin
+set ideajoin
+set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
+set showmode                      " message on the status line to show current mode
+set showcmd                       " show (partial) command in the status bar
+
+set NERDTree
+ 
+
+let mapleader = " "
+
+" edit ideavim config
+
+nnoremap \e :e ~\.ideavimrc<CR>
+nnoremap \r :source ~\.ideavimrc<CR>
+
+nnoremap <Leader>z :action ToggleDistractionFreeMode<CR>
+
+
+" nnoremap <leader>F :action ReformatCode<CR>
+" nnoremap gd :action GotoDeclaration<CR>
+" nnoremap gr :action FindUsages<CR>
+nnoremap gp :NERDTree <CR>
+nnoremap gh :action Back <CR>
+nnoremap gl :action Forward <CR>
+nnoremap gj :action MethodDown <CR>
+nnoremap gk :action MethodUp <CR>
+
+nnoremap gd :action GotoDeclaration <CR>
+nnoremap gr :action RecentFiles <CR>
+nnoremap gu :action ShowUsages <CR>
+nnoremap gU :action FindUsages <CR>
+ 
+nnoremap <leader>gi :action GotoImplementation<CR>
+nnoremap <leader>sp :action ParameterInfo<CR>
+ 
+
+nnoremap <leader>l :action RecentLocations<CR>
+nnoremap <leader>ff :action SearchEverywhere<CR>
+nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
+
+ 
+
+" Undo
+
+nnoremap <leader>uh :action LocalHistory.ShowHistory<CR>
+
+ 
+
+" Test and Run
+
+nnoremap <leader>gt :action GotoTest<CR>
+
+nnoremap <leader>tc :action RunClass<CR>
+
+nnoremap <leader>tl :action Rerun<CR>
+
+nnoremap <leader>tf :action RerunFailedTests<CR>
+
+ 
+
+" Jumping
+"nnoremap <C-j> <C-W>j
+"nnoremap <C-k> <C-W>k
+"nnoremap <C-h> <C-W>h
+"nnoremap <C-l> <C-W>l
+
+"nnoremap <c-o> :action Back<cr>
+"nnoremap <c-i> :action Forward<cr>
+
+" split window
+nnoremap <leader>sv :action SplitVertically<CR>
+nnoremap <leader>sc :action UnsplitAll<CR>
+nnoremap <leader>v :action NextSplitter<CR> 
+
+ 
+
+set highlightedyank
+
+let g:highlightedyank_highlight_duration = "1000"
+
+ 
+
+sethandler n:vim i:ide
