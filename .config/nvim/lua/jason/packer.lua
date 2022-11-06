@@ -28,17 +28,10 @@ return require('packer').startup(function(use)
 
     -- UI
     use {"kyazdani42/nvim-web-devicons"}
-    -- use {"folke/tokyonight.nvim"}
     use {"gruvbox-community/gruvbox"}
     use {
         "nvim-lualine/lualine.nvim",
         requires = {"nvim-web-devicons"}
-    }
-
-    -- Startup screen
-    use {
-        "goolord/alpha-nvim",
-        requires = {"kyazdani42/nvim-web-devicons"},
     }
 
     -- Which Key
@@ -48,10 +41,7 @@ return require('packer').startup(function(use)
     use {"TimUntersberger/neogit"}
 
    -- File Explorer 
-    use {
-        "kyazdani42/nvim-tree.lua",
-        requires = {"kyazdani42/nvim-web-devicons"}
-    }
+    use {"scrooloose/nerdtree"}
 
     -- Treesitter
     use {
@@ -120,6 +110,8 @@ return require('packer').startup(function(use)
     "ThePrimeagen/refactoring.nvim",                -- Refactoring tools
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" }
     }
+
+    use "ThePrimeagen/vim-be-good"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

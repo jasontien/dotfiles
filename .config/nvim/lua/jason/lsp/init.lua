@@ -39,7 +39,7 @@ for _, server in ipairs(servers) do
     capabilities = handlers.capabilities,
   }
 
-  local has_custom_opts, server_custom_opts = pcall(require, "settings." .. server)
+  local has_custom_opts, server_custom_opts = pcall(require, "jason.lsp.settings." .. server)
   if has_custom_opts then
     opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
   end
