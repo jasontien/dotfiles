@@ -1,184 +1,130 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+
 " search for actions: :actionlist <patter>
 
- 
-
 set number relativenumber                " show the line number relative to the line with the cursor
-
-set scrolloff=3
-
+set scrolloff=8
 set ignorecase                    " ignore case in search patterns
-
 set smartcase                     " no ignore case when pattern is uppercase
-
 set incsearch                     " show search results while typing
-
 set wrapscan                      " searches wrap around the end of the file
-
 set surround                      " emulate vim-surround plugin
-
 set ideajoin
-
 set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
-
 set showmode                      " message on the status line to show current mode
-
 set showcmd                       " show (partial) command in the status bar
 
- 
-
 set NERDTree
-
-
  
 
 let mapleader = " "
 
- 
-
 " edit ideavim config
 
- 
-
 nnoremap \e :e ~\.ideavimrc<CR>
-
 nnoremap \r :source ~\.ideavimrc<CR>
-
- 
 
 nnoremap <Leader>z :action ToggleDistractionFreeMode<CR>
 
- 
-
- 
 
 " nnoremap <leader>F :action ReformatCode<CR>
-
 " nnoremap gd :action GotoDeclaration<CR>
-
 " nnoremap gr :action FindUsages<CR>
-
-nnoremap gp :NERDTreeOpen <CR>
-
-nnoremap gh :action Back <CR>
-
+nnoremap pv :NERDTreeFocus<CR>
+nnoremap gh :action Back<CR>
 nnoremap gl :action Forward <CR>
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
 
-nnoremap gj :action MethodDown <CR>
-
-nnoremap gk :action MethodUp <CR>
-
- 
-
-nnoremap gd :action GotoDeclaration <CR>
-
-nnoremap gr :action RecentFiles <CR>
-
-nnoremap gu :action ShowUsages <CR>
-
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gr :action ShowUsages <CR>
 nnoremap gU :action FindUsages <CR>
-
-
-nnoremap <leader>gi :action GotoImplementation<CR>
-
+nnoremap gd :action GotoDeclaration <CR>
+nnoremap gD :action GotoTypeDeclaration <CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+ 
 nnoremap <leader>sp :action ParameterInfo<CR>
-
-
  
 
-nnoremap <leader>l :action RecentLocations<CR>
-
-nnoremap <leader>ff :action SearchEverywhere<CR>
-
+nnoremap <leader>pr :action RecentLocations<CR>
+nnoremap <leader>pf :action RecentFiles<CR>
 nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
-
 nnoremap <leader>rv :action IntroduceVariable<CR>
 
- 
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
 
- 
 
 " Undo
-
- 
 
 nnoremap <leader>uh :action LocalHistory.ShowHistory<CR>
 
  
 
-
- 
-
 " Test and Run
 
- 
-
 nnoremap <leader>tt :action RiderUnitTestQuickListPopupAction<CR>
-
 nnoremap <leader>tr :action RiderUnitTestRunContextAction<CR>
-
 nnoremap <leader>tf :action RerunFailedTests<CR>
 
- 
-
 " Copy & Paste override
-
-" delete without yanking
-
+ " delete without yanking
 nnoremap <leader>d "_d
-
 vnoremap <leader>d "_d
 
- 
-
 " replace currently selected text with default register
-
 " without yanking it
-
 vnoremap <leader>p "_dP
 
- 
-
 " Jumping
-
 "nnoremap <C-j> <C-W>j
-
 "nnoremap <C-k> <C-W>k
-
 "nnoremap <C-h> <C-W>h
-
 "nnoremap <C-l> <C-W>l
-
- 
+nnoremap <c-d> <c-d>zz<CR>
+nnoremap <c-u> <c-u>zz<CR>
 
 "nnoremap <c-o> :action Back<cr>
-
 "nnoremap <c-i> :action Forward<cr>
 
- 
-
 " split window
-
 nnoremap <leader>sv :action SplitVertically<CR>
-
 nnoremap <leader>sc :action UnsplitAll<CR>
-
-nnoremap <leader>v :action NextSplitter<CR>
-
- 
-
-
-nnoremap <c-w>q :q<CR>
+nnoremap <leader>v :action NextSplitter<CR> 
 
  
+nnoremap <c-w>q :q<CR> 
 
 set highlightedyank
 
- 
-
 let g:highlightedyank_highlight_duration = "1000"
-
- 
-
 
  
 
