@@ -1,0 +1,115 @@
+#!/usr/bin/env sh
+
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+#
+# see this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+#
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# sudo yabai --load-sa
+#
+
+# global settings
+yabai -m config                                 \
+    mouse_follows_focus          off            \
+    focus_follows_mouse          off             \
+    window_origin_display        default        \
+    window_placement             second_child   \
+    window_zoom_persist          on             \
+    window_topmost               off            \
+    window_shadow                on             \
+    window_animation_duration    0.0            \
+    window_animation_frame_rate  120            \
+    window_opacity_duration      0.0            \
+    active_window_opacity        1.0            \
+    normal_window_opacity        0.90           \
+    window_opacity               off            \
+    insert_feedback_color        0xffd75f5f     \
+    active_window_border_color   0xff775759     \
+    normal_window_border_color   0xff555555     \
+    window_border_width          4              \
+    window_border_radius         12             \
+    window_border_blur           off            \
+    window_border_hidpi          on             \
+    window_border                off            \
+    split_ratio                  0.50           \
+    split_type                   auto           \
+    auto_balance                 off            \
+    top_padding                  12             \
+    bottom_padding               12             \
+    left_padding                 12             \
+    right_padding                12             \
+    window_gap                   06             \
+    layout                       bsp            \
+    mouse_modifier               fn             \
+    mouse_action1                move           \
+    mouse_action2                resize         \
+    mouse_drop_action            swap
+
+
+# floating windows are always on top (default: off)
+yabai -m config window_topmost on
+
+# window opacity (default: off)
+# example: render all unfocused windows with 90% opacity
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.9
+
+# space 2
+yabai -m rule --add app="^IntelliJ IDEA$" space=2
+yabai -m rule --add app="^IntelliJ IDEA$" title="^Settings$" manage=off space=2 layer=above
+yabai -m rule --add app="^IntelliJ IDEA$" title="^Tip of the Day$" manage=off space=2 layer=above
+yabai -m rule --add app="^IntelliJ IDEA$" title="^Add File to Git$" manage=off space=2 layer=above
+yabai -m rule --add app="^IntelliJ IDEA$" title="^Add Files to Git$" manage=off space=2 layer=above
+yabai -m rule --add app="^IntelliJ IDEA$" title="^Copy$" manage=off space=2 layer=above
+yabai -m rule --add app="^IntelliJ IDEA$" title="^Rename$" manage=off space=2 layer=above
+yabai -m rule --add app="^IntelliJ IDEA$" title="^Delete$" manage=off space=2 layer=above
+
+# space 4
+yabai -m rule --add app="^Sourcetree$" title=".*\(Git\)$" space=4
+yabai -m rule --add app="^Sourcetree$" title="^About Sourcetree$" space=4 manage=off space=4 layer=above
+yabai -m rule --add app="^Sourcetree$" title="^Sourcetree$" space=4 manage=off space=4 layer=above
+yabai -m rule --add app="^Sourcetree$" title="^General$" space=4 manage=off space=4 layer=above
+yabai -m rule --add app="^Sourcetree$" title="^Commit$" space=4 manage=off space=4 layer=above
+yabai -m rule --add app="^Sourcetree$" title="^Accounts$" space=4 manage=off space=4 layer=above
+yabai -m rule --add app="^Sourcetree$" title="^Diff$" space=4 manage=off space=4 layer=above
+yabai -m rule --add app="^Sourcetree$" title="^(Visual Merge:).*" manage=off space=4 layer=above
+
+#space 5
+yabai -m rule --add app="^Obsidian$" manage=on space=5
+
+# space 6
+yabai -m rule --add app="^Safari$" manage=on space=6
+
+yabai -m rule --add app="^Microsoft Teams$" manage=on
+
+# apps to not manage (ignore)
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off layer=above
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Archive Utility$" manage=off
+yabai -m rule --add app="^Logi Options$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Microsoft Remote Desktop$" manage=off
+yabai -m rule --add app="^Microsoft Teams$" manage=on
+yabai -m rule --add app="^Microsoft Outlook$" manage=off
+yabai -m rule --add app="^Magnet$" manage=off
+yabai -m rule --add app="^FileMerge$" manage=off layer=above
+
+
+echo "yabai configuration loaded.."
+
+
+
+# ---------------------------------------------------------------------------
+# Identify the window open
+# sleep 4; yabai -m query --windows --window
+
+# get everything about Google Chrome windows
+# yabai -m query --windows | jq 'map(select(.app == "Google Chrome"))'
+
+# get just the title of all Google Chrome windows
+# yabai -m query --windows | jq 'map(select(.app == "Google Chrome").title)'
